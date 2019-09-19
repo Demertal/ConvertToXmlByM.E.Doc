@@ -1,0 +1,23 @@
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\bin\Debug\ConvertorToXmlByM.E.Doc v.2.0.exe.config
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\bin\Debug\ConvertorToXmlByM.E.Doc v.2.0.exe
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\bin\Debug\ConvertorToXmlByM.E.Doc v.2.0.pdb
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc v.2.0.csprojAssemblyReference.cache
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\MainWindow.baml
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\MainWindow.g.cs
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\App.g.cs
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc v.2.0_MarkupCompile.cache
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc v.2.0.g.resources
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc_v._2._0.Properties.Resources.resources
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc v.2.0.csproj.GenerateResource.cache
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc v.2.0.csproj.CoreCompileInputs.cache
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc v.2.0.exe
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc v.2.0.pdb
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc v.2.0_MarkupCompile.lref
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\bin\Debug\ExcelDataReader.DataSet.dll
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\bin\Debug\ExcelDataReader.dll
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\bin\Debug\ExcelDataReader.pdb
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\bin\Debug\ExcelDataReader.xml
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\bin\Debug\ExcelDataReader.DataSet.pdb
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\bin\Debug\ExcelDataReader.DataSet.xml
+D:\Project\ConvertorToXmlByM.E.Doc-v.1.0\ConvertorToXml v.1.0\ConvertorToXmlByM.E.Doc v.2.0\obj\Debug\ConvertorToXmlByM.E.Doc v.2.0.csproj.CopyComplete

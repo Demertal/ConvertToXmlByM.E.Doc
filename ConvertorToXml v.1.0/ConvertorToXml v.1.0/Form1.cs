@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,9 @@ using System.IO;
 using Microsoft.Office.Interop.Excel;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Application = Microsoft.Office.Interop.Excel.Application;
+using Workbook = Microsoft.Office.Interop.Excel.Workbook;
+using Worksheet = Microsoft.Office.Interop.Excel.Worksheet;
 
 namespace ConvertorToXml_v._1._0
 {
@@ -55,7 +59,7 @@ namespace ConvertorToXml_v._1._0
         }
 
         [Serializable]
-        public class PackXML : Form1
+        public class PackXml : Form1
         {
             public int rownum;
             public string TIN;
@@ -98,7 +102,7 @@ namespace ConvertorToXml_v._1._0
             public string R01G11;
 
             //Создание загружаемой таблицы
-            public PackXML(int rownum, int count, List<uint> items, Microsoft.Office.Interop.Excel.Worksheet OS, Form1 obj)
+            public PackXml(int rownum, int count, List<uint> items, Microsoft.Office.Interop.Excel.Worksheet OS, Form1 obj)
             {
                 this.rownum = rownum;
                 TIN = "00191075";
@@ -166,7 +170,7 @@ namespace ConvertorToXml_v._1._0
             }
         }
 
-        static void Writer_Head(PackXML obj, XmlWriter writer)
+        static void Writer_Head(PackXml obj, XmlWriter writer)
         {
             writer.WriteStartElement("DECLARHEAD");
             writer.WriteStartElement("TIN");
@@ -219,7 +223,7 @@ namespace ConvertorToXml_v._1._0
             writer.WriteEndElement();
             writer.WriteEndElement();
         }
-        static void Writer_Body(PackXML obj, XmlWriter writer)
+        static void Writer_Body(PackXml obj, XmlWriter writer)
         {
             writer.WriteStartElement("DECLARBODY");
             for (int i = 0; i < obj.rownum; i++)
@@ -296,7 +300,7 @@ namespace ConvertorToXml_v._1._0
             writer.WriteEndElement();
             writer.WriteEndElement();
         }
-        static void Serialize_XmlWriter(PackXML obj, string fileName)
+        static void Serialize_XmlWriter(PackXml obj, string fileName)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
@@ -319,22 +323,18 @@ namespace ConvertorToXml_v._1._0
             using (SpreadsheetDocument document = SpreadsheetDocument.Open(fileName, false))
             {
                 WorkbookPart wbPart = document.WorkbookPart;
-                Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().Where((s) => s.Name == sheetName).FirstOrDefault();
-                if (theSheet == null)
-                {
-                    throw new ArgumentException("sheetName");
-                }
-                else
-                {
-                WorksheetPart wsPart = (WorksheetPart)(wbPart.GetPartById(theSheet.Id));
+                Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().FirstOrDefault(s => s.Name == sheetName);
+
+                if (theSheet == null) return itemList;
+                WorksheetPart wsPart = (WorksheetPart)wbPart.GetPartById(theSheet.Id);
                 DocumentFormat.OpenXml.Spreadsheet.Worksheet ws = wsPart.Worksheet;
                 if (detectRows)
                 {
-                    itemList = ws.Descendants<Row>().Where((r) => r.Hidden != null && r.Hidden.Value).Select(r => r.RowIndex.Value).ToList<uint>();
+                    itemList = ws.Descendants<Row>().Where(r => r.Hidden != null && r.Hidden.Value).Select(r => r.RowIndex.Value).ToList();
                 }
                 else
                 {
-                    var cols = ws.Descendants<Column>().Where((c) => c.Hidden != null && c.Hidden.Value);
+                    var cols = ws.Descendants<Column>().Where(c => c.Hidden != null && c.Hidden.Value);
                     foreach (Column item in cols)
                     {
                         for (uint i = item.Min.Value; i <= item.Max.Value; i++)
@@ -344,79 +344,92 @@ namespace ConvertorToXml_v._1._0
                     }
                 }
             }
-        }
         return itemList;
     }
 
         private void Main_Work()
         {
+
             int rownum = 0;
-            if (OpenExcel.ShowDialog() == DialogResult.OK)
+            if (OpenExcel.ShowDialog() != DialogResult.OK) return;
+            GetNameExcel();
+
+            var fileName = string.Format("{0}\\fileNameHere", Directory.GetCurrentDirectory());
+            var connectionString = string.Format("Provider=Microsoft.Jet.OLEDB.4.0; data source={0}; Extended Properties=Excel 8.0;", fileName);
+
+            var adapter = new OleDbDataAdapter("SELECT * FROM [workSheetNameHere$]", connectionString);
+            var ds = new DataSet();
+
+            adapter.Fill(ds, "anyNameHere");
+
+            System.Data.DataTable data = ds.Tables["anyNameHere"];
+
+            Application objExcel = new Application();
+            try
             {
-                GetNameExcel();
-                Microsoft.Office.Interop.Excel.Application ObjExcel;
-                Microsoft.Office.Interop.Excel.Workbook ObjWorkBook;
-                Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
-                ObjExcel = new Microsoft.Office.Interop.Excel.Application();
-                try
+
+                //Открываем книгу.    
+                Workbook objWorkBook = objExcel.Workbooks.Open(NameExcel, 0, false, 5, "", "", false,
+                    XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+                //Выбираем таблицу(лист).
+                Worksheet objWorkSheet = (Worksheet) objWorkBook.Sheets[1];
+                string temp = objWorkSheet.Name;
+                objExcel.Quit();
+                List<uint> items = GetHiddenRowsOrCols(NameExcel, temp, true);
+
+                objWorkBook = objExcel.Workbooks.Open(NameExcel, 0, false, 5, "", "", false,
+                    XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+                objWorkSheet = (Worksheet)objWorkBook.Sheets[1];
+
+                GetRange(objWorkSheet);
+                int count = range_VolumeLiters.Row + 1;
+                int i = 0;
+                do
                 {
-                    List<uint> items = GetHiddenRowsOrCols(NameExcel, "Sheet1", true);
-                    //Открываем книгу.    
-                    ObjWorkBook = ObjExcel.Workbooks.Open(NameExcel, 0, false, 5, "", "", false, XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-                    //Выбираем таблицу(лист).
-                    ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
-                    GetRange(ObjWorkSheet);
-                    int count = range_VolumeLiters.Row+1;
-                    int i = 0;
-                    do
+                    if (i == items.Count) rownum++;
+                    else
                     {
-                        if (i == items.Count) rownum++;
-                        else
+                        if (items[i] != count)
                         {
-                            if (items[i] != count)
-                            {
-                                rownum++;
-                            }
-                            else i++;
+                            rownum++;
                         }
-                        count++;
-                    } while (count != range_Result.Row);
-                    PackXML src = new PackXML(rownum, count, items, ObjWorkSheet, this);
-                    string file_name = "XML_AN.d4_"+ DateTime.Now.ToString() + ".xml";
-                    string temp_file_name = file_name;
-                    file_name = "";
-                    for(i = 0; i < temp_file_name.Length; i++)
-                    {
-                        if (temp_file_name[i] == ':') i++;
-                        file_name += temp_file_name[i];
+                        else i++;
                     }
-                    DriveInfo[] allDrives = DriveInfo.GetDrives();
-                    foreach (DriveInfo d in allDrives)
-                    {
-                        if (d.IsReady == true)
-                        {
-                            if(d.DriveType == DriveType.Fixed)
-                            {
-                                if(d.Name != "C:\\")
-                                {
-                                    string temp_file_direct = d.Name + file_name;
-                                    file_name = temp_file_direct;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    FileStream fs = File.Create(file_name);
-                    fs.Close();
-                    Serialize_XmlWriter(src, file_name);
-                    ObjExcel.Quit();
-                    MessageBox.Show("Успех! Результат сохранен в файл " + file_name);
-                }
-                catch (Exception e)
+
+                    count++;
+                } while (count != range_Result.Row);
+
+                PackXml src = new PackXml(rownum, count, items, objWorkSheet, this);
+                string file_name = "XML_AN.d4_" + DateTime.Now.ToString() + ".xml";
+                string temp_file_name = file_name;
+                file_name = "";
+                for (i = 0; i < temp_file_name.Length; i++)
                 {
-                    ObjExcel.Quit();
-                    MessageBox.Show("Ошибка!" + e.Message);
+                    if (temp_file_name[i] == ':') i++;
+                    file_name += temp_file_name[i];
                 }
+
+                DriveInfo[] allDrives = DriveInfo.GetDrives();
+                foreach (DriveInfo d in allDrives)
+                {
+                    if (d.IsReady != true || d.DriveType != DriveType.Fixed || d.Name == "C:\\") continue;
+                    string tempFileDirect = d.Name + file_name;
+                    file_name = tempFileDirect;
+                    break;
+                }
+
+                FileStream fs = File.Create(file_name);
+                fs.Close();
+                Serialize_XmlWriter(src, file_name);
+                MessageBox.Show("Результат сохранен в файл " + file_name, "Успех!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Ошибка!");
+            }
+            finally
+            {
+                objExcel.Quit();
             }
         }
         private void Button_Start_Click(object sender, EventArgs e)

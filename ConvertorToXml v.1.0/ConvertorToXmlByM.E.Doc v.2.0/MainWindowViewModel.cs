@@ -80,6 +80,7 @@ namespace ConvertorToXmlByM.E.Doc_v._2._0
                 FileStream fs = File.Create(fileName);
                 fs.Close();
                 WriteXml(new PackXml(Period.Value, _data, SelectedColumn), fileName);
+                MessageBox.Show("Результат сохранен в файл " + fileName, "Успех!", MessageBoxButton.OK, MessageBoxImage.Asterisk, MessageBoxResult.OK);
             }
             catch (Exception e)
             {

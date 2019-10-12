@@ -15,10 +15,12 @@ namespace ConvertorToXmlByM.E.Doc.XML
 
             foreach (var store in stores)
             {
-                Body.Add(new TableBody(store.StoreCode, store.ProductCode, "",
+                Body.Add(new TableBody(store.StoreCode, store.ProductCode,
+                    Math.Round(store.Balance / 1000, 3).ToString(CultureInfo.InvariantCulture),
                     Math.Round(store.Received / 1000, 3).ToString(CultureInfo.InvariantCulture),
                     Math.Round(store.Implemented / 1000, 3).ToString(CultureInfo.InvariantCulture),
-                    t1Rxxxxg12: Math.Round(store.ReplenishmentApplication / 1000, 3).ToString(CultureInfo.InvariantCulture)));
+                    t1Rxxxxg12: Math.Round(store.ReplenishmentApplication / 1000, 3)
+                        .ToString(CultureInfo.InvariantCulture)));
             }
         }
 
@@ -55,19 +57,31 @@ namespace ConvertorToXmlByM.E.Doc.XML
                     {
                         if (!stores.Any(s => s.StoreCode == exciseWarehouseFrom && s.ProductCode == productCode))
                             stores.Add(new Store(exciseWarehouseFrom, productCode));
-                        Store temp = stores.First(s =>
+                        Store store = stores.First(s =>
                             s.StoreCode == exciseWarehouseFrom && s.ProductCode == productCode);
                         if (string.IsNullOrEmpty(edrpou))
-                            temp.ReplenishmentApplication += volumeLiters;
+                            store.ReplenishmentApplication += volumeLiters;
                         else
-                            temp.Implemented += volumeLiters;
+                            store.Implemented += volumeLiters;
                     }
                     else if (mobileExciseWarehouseFrom != string.Empty)
                     {
                         if (!stores.Any(s => s.StoreCode == mobileExciseWarehouseFrom && s.ProductCode == productCode))
                             stores.Add(new Store(mobileExciseWarehouseFrom, productCode));
-                        stores.First(s => s.StoreCode == mobileExciseWarehouseFrom && s.ProductCode == productCode)
-                            .Implemented += volumeLiters;
+                        Store store = stores.First(s =>
+                            s.StoreCode == mobileExciseWarehouseFrom && s.ProductCode == productCode);
+                        store.Implemented += volumeLiters;
+                        if (string.IsNullOrEmpty(exciseWarehouseTo) && string.IsNullOrEmpty(mobileExciseWarehouseTo))
+                        {
+                            var temp = dataSet.Tables[0].Select().FirstOrDefault(d =>
+                                d[selectedColumn["Direction"]].ToString() == "Виданий" &&
+                                d[selectedColumn["MobileExciseWarehouseTo"]].ToString() == mobileExciseWarehouseFrom &&
+                                d[selectedColumn["ProductСode"]].ToString() == productCode &&
+                                !string.IsNullOrEmpty(d[selectedColumn["RegistrationNumber"]].ToString()) &&
+                                d[selectedColumn["RegistrationDate"]] is DateTime tempDate &&
+                                tempDate.Month == date.Value.Month - 1);
+                            store.Balance = (double?) temp?[selectedColumn["VolumeLiters"]] ?? 0;
+                        }
                     }
                 }
                 if (exciseWarehouseTo != string.Empty)
@@ -98,7 +112,7 @@ namespace ConvertorToXmlByM.E.Doc.XML
 
                 WriteElementWithAttribute(writer, "T1RXXXXG1S", Body[i].T1Rxxxxg1, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG2S", Body[i].T1Rxxxxg2, "ROWNUM", rownum);
-                WriteElementWithAttribute(writer, "T1RXXXXG3S", Body[i].T1Rxxxxg3, "ROWNUM", rownum);
+                WriteElementWithAttribute(writer, "T1RXXXXG3", Body[i].T1Rxxxxg3, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG4", Body[i].T1Rxxxxg4, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG5", Body[i].T1Rxxxxg5, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG6", Body[i].T1Rxxxxg6, "ROWNUM", rownum);
@@ -112,10 +126,6 @@ namespace ConvertorToXmlByM.E.Doc.XML
                 WriteElementWithAttribute(writer, "T1RXXXXG14", Body[i].T1Rxxxxg14, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG15", Body[i].T1Rxxxxg15, "ROWNUM", rownum);
             }
-
-            //WriteElement(writer, "R01G9", obj.R01G9);
-            //WriteElement(writer, "R01G10", obj.R01G10);
-            //WriteElement(writer, "R01G11", obj.R01G11);
 
             writer.WriteEndElement();
         }

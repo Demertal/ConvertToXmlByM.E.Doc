@@ -72,13 +72,14 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
                 DataTable temp = new DataTable();
                 temp.Columns.Add("Склад");
                 temp.Columns.Add("Код УКТ ЗЕД");
+                temp.Columns.Add("Остаток на начало");
                 temp.Columns.Add("Полученно");
                 temp.Columns.Add("Реализованно");
                 temp.Columns.Add("Заявка на поступление");
 
                 foreach (var store in j029500.Body)
                 {
-                    temp.Rows.Add(store.T1Rxxxxg1, store.T1Rxxxxg2, store.T1Rxxxxg4, store.T1Rxxxxg5, store.T1Rxxxxg12);
+                    temp.Rows.Add(store.T1Rxxxxg1, store.T1Rxxxxg2, store.T1Rxxxxg3, store.T1Rxxxxg4, store.T1Rxxxxg5, store.T1Rxxxxg12);
                 }
 
                 _data.Tables.Add(temp);

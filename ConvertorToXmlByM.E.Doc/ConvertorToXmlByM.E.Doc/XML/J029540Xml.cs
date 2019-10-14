@@ -20,9 +20,9 @@ namespace ConvertorToXmlByM.E.Doc.XML
                 Body.Add(new TableBody("", document.ProductCode, document.ProductDesc, document.Unit,
                     Math.Round(document.CountProduct, 3).ToString(CultureInfo.InvariantCulture),
                     t1Rxxxxg8: document.PrivilegeCode,
-                    t1Rxxxxg10: Math.Round(document.FromTaxable).ToString(CultureInfo.InvariantCulture),
-                    t1Rxxxxg12: document.PayerName, t1Rxxxxg14: document.СrossingDate.ToString(),
-                    t1Rxxxxg15: document.Act, t1Rxxxxg16: document.Type));
+                    t1Rxxxxg9: Math.Round(document.FromTaxable).ToString(CultureInfo.InvariantCulture),
+                    t1Rxxxxg11: document.PayerName, t1Rxxxxg13: document.СrossingDate.ToString(),
+                    t1Rxxxxg14: document.Act, t1Rxxxxg15: document.Type));
             }
 
             R01G10 = result.ToString(CultureInfo.InvariantCulture);
@@ -36,8 +36,8 @@ namespace ConvertorToXmlByM.E.Doc.XML
                 DateTime? сrossingDate = dataRow[selectedColumn["СrossingDate"]] as DateTime?;
                 string payerName = dataRow[selectedColumn["PayerName"]].ToString();
                 string act = dataRow[selectedColumn["Act"]].ToString();
-                double countProduct = (double) dataRow[selectedColumn["VolumeLiters"]];
-                double fromTaxable = (double)dataRow[selectedColumn["FromTaxable"]];
+                double countProduct = dataRow[selectedColumn["VolumeLiters"]] is DBNull ? 0 : (double) dataRow[selectedColumn["VolumeLiters"]];
+                double fromTaxable = dataRow[selectedColumn["FromTaxable"]] is DBNull ? 0 : (double) dataRow[selectedColumn["FromTaxable"]];
 
                 if (documents.All(d => d.Act != act))
                     documents.Add(new Document(сrossingDate: сrossingDate, payerName: payerName, act: act));
@@ -62,13 +62,13 @@ namespace ConvertorToXmlByM.E.Doc.XML
                 WriteElementWithAttribute(writer, "T1RXXXXG5", Body[i].T1Rxxxxg5, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG6", Body[i].T1Rxxxxg6, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG7", Body[i].T1Rxxxxg7, "ROWNUM", rownum);
-                WriteElementWithAttribute(writer, "T1RXXXXG8", Body[i].T1Rxxxxg8, "ROWNUM", rownum);
+                WriteElementWithAttribute(writer, "T1RXXXXG8S", Body[i].T1Rxxxxg8, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG9", Body[i].T1Rxxxxg9, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG10", Body[i].T1Rxxxxg10, "ROWNUM", rownum);
-                WriteElementWithAttribute(writer, "T1RXXXXG11", Body[i].T1Rxxxxg11, "ROWNUM", rownum);
+                WriteElementWithAttribute(writer, "T1RXXXXG11S", Body[i].T1Rxxxxg11, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG12S", Body[i].T1Rxxxxg12, "ROWNUM", rownum);
-                WriteElementWithAttribute(writer, "T1RXXXXG13S", Body[i].T1Rxxxxg13, "ROWNUM", rownum);
-                WriteElementWithAttribute(writer, "T1RXXXXG14D", Body[i].T1Rxxxxg14, "ROWNUM", rownum);
+                WriteElementWithAttribute(writer, "T1RXXXXG13D", Body[i].T1Rxxxxg13, "ROWNUM", rownum);
+                WriteElementWithAttribute(writer, "T1RXXXXG14S", Body[i].T1Rxxxxg14, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG15S", Body[i].T1Rxxxxg15, "ROWNUM", rownum);
                 WriteElementWithAttribute(writer, "T1RXXXXG16S", Body[i].T1Rxxxxg16, "ROWNUM", rownum);
             }

@@ -35,7 +35,6 @@ D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\System.ValueTuple.xml
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\Unity.Abstractions.pdb
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\Unity.Container.pdb
-D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.csprojAssemblyReference.cache
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.exe.config
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\Views\J029500.baml
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\Views\J029540.baml

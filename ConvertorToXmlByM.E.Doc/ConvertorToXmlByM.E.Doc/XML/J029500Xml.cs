@@ -9,6 +9,18 @@ namespace ConvertorToXmlByM.E.Doc.XML
 {
     public class J029500Xml : BaseXml
     {
+        private Dictionary<string, double> _taxRates = new Dictionary<string, double>
+        {
+            {"2707109000", 195},
+            {"2707309000", 195},
+            {"2710124194", 213.5},
+            {"2710192100", 21},
+            {"2710194300", 139.5},
+            {"2711129700", 52},
+            {"2901100010", 52},
+            {"2901100090", 213.5}
+        };
+
         public J029500Xml(DateTime period, DataSet dataSet, Dictionary<string, string> selectedColumn) : base(period, "J02", "950")
         {
             List<Store> stores = GenerateData(dataSet, selectedColumn);
@@ -19,6 +31,7 @@ namespace ConvertorToXmlByM.E.Doc.XML
                     Math.Round(store.Balance / 1000, 3).ToString(CultureInfo.InvariantCulture),
                     Math.Round(store.Received / 1000, 3).ToString(CultureInfo.InvariantCulture),
                     Math.Round(store.Implemented / 1000, 3).ToString(CultureInfo.InvariantCulture),
+                    t1Rxxxxg9: store.TaxRate.ToString(CultureInfo.InvariantCulture),
                     t1Rxxxxg12: Math.Round(store.ReplenishmentApplication / 1000, 3)
                         .ToString(CultureInfo.InvariantCulture)));
             }
@@ -28,14 +41,11 @@ namespace ConvertorToXmlByM.E.Doc.XML
         {
             List<Store> stores = new List<Store>();
             List<(string edrpou, string act)> сounterpartyInvoiceNumber = new List<(string edrpou, string act)>();
-            foreach (var dataRow in dataSet.Tables[0].Select())
+            foreach (var dataRow in dataSet.Tables[0].Select().Where(d =>
+                !string.IsNullOrEmpty(d[selectedColumn["RegistrationNumber"]].ToString()) &&
+                d[selectedColumn["RegistrationDate"]] is DateTime date && date.Year == int.Parse(PeriodYear) &&
+                date.Month == int.Parse(PeriodMonth))) 
             {
-                DateTime? date = dataRow[selectedColumn["RegistrationDate"]] as DateTime?;
-                string registrationNumber = dataRow[selectedColumn["RegistrationNumber"]].ToString();
-
-                if (date == null || string.IsNullOrEmpty(registrationNumber) ||
-                    date.Value.Year.ToString() != PeriodYear || date.Value.Month.ToString() != PeriodMonth) continue;
-
                 string edrpou = dataRow[selectedColumn["EDRPOU"]].ToString();
                 string act = dataRow[selectedColumn["Act"]].ToString();
                 
@@ -56,7 +66,7 @@ namespace ConvertorToXmlByM.E.Doc.XML
                     if (exciseWarehouseFrom != string.Empty)
                     {
                         if (!stores.Any(s => s.StoreCode == exciseWarehouseFrom && s.ProductCode == productCode))
-                            stores.Add(new Store(exciseWarehouseFrom, productCode));
+                            stores.Add(new Store(exciseWarehouseFrom, productCode, _taxRates.First( t => t.Key == productCode).Value));
                         Store store = stores.First(s =>
                             s.StoreCode == exciseWarehouseFrom && s.ProductCode == productCode);
                         if (string.IsNullOrEmpty(edrpou))
@@ -67,36 +77,60 @@ namespace ConvertorToXmlByM.E.Doc.XML
                     else if (mobileExciseWarehouseFrom != string.Empty)
                     {
                         if (!stores.Any(s => s.StoreCode == mobileExciseWarehouseFrom && s.ProductCode == productCode))
-                            stores.Add(new Store(mobileExciseWarehouseFrom, productCode));
+                            stores.Add(new Store(mobileExciseWarehouseFrom, productCode, _taxRates.First(t => t.Key == productCode).Value));
                         Store store = stores.First(s =>
                             s.StoreCode == mobileExciseWarehouseFrom && s.ProductCode == productCode);
                         store.Implemented += volumeLiters;
-                        if (string.IsNullOrEmpty(exciseWarehouseTo) && string.IsNullOrEmpty(mobileExciseWarehouseTo))
-                        {
-                            var temp = dataSet.Tables[0].Select().FirstOrDefault(d =>
-                                d[selectedColumn["Direction"]].ToString() == "Виданий" &&
-                                d[selectedColumn["MobileExciseWarehouseTo"]].ToString() == mobileExciseWarehouseFrom &&
-                                d[selectedColumn["ProductСode"]].ToString() == productCode &&
-                                !string.IsNullOrEmpty(d[selectedColumn["RegistrationNumber"]].ToString()) &&
-                                d[selectedColumn["RegistrationDate"]] is DateTime tempDate &&
-                                tempDate.Month == date.Value.Month - 1);
-                            store.Balance = (double?) temp?[selectedColumn["VolumeLiters"]] ?? 0;
-                        }
                     }
                 }
                 if (exciseWarehouseTo != string.Empty)
                 {
                     if (!stores.Any(s => s.StoreCode == exciseWarehouseTo && s.ProductCode == productCode))
-                        stores.Add(new Store(exciseWarehouseTo, productCode));
+                        stores.Add(new Store(exciseWarehouseTo, productCode, _taxRates.First(t => t.Key == productCode).Value));
                     stores.First(s => s.StoreCode == exciseWarehouseTo && s.ProductCode == productCode).Received +=
                         volumeLiters;
                 }
                 else if (mobileExciseWarehouseTo != string.Empty)
                 {
                     if (!stores.Any(s => s.StoreCode == mobileExciseWarehouseTo && s.ProductCode == productCode))
-                        stores.Add(new Store(mobileExciseWarehouseTo, productCode));
+                        stores.Add(new Store(mobileExciseWarehouseTo, productCode, _taxRates.First(t => t.Key == productCode).Value));
                     stores.First(s => s.StoreCode == mobileExciseWarehouseTo && s.ProductCode == productCode)
                         .Received += volumeLiters;
+                }
+            }
+
+            сounterpartyInvoiceNumber.Clear();
+
+            foreach (var store in stores)
+            {
+                foreach (var dataRow in dataSet.Tables[0].Select().Where(d =>
+                    d[selectedColumn["ProductСode"]].ToString() == store.ProductCode &&
+                    !string.IsNullOrEmpty(d[selectedColumn["RegistrationNumber"]].ToString()) &&
+                    d[selectedColumn["RegistrationDate"]] is DateTime date && date.Year == int.Parse(PeriodYear) &&
+                    date.Month < int.Parse(PeriodMonth) &&
+                    (d[selectedColumn["MobileExciseWarehouseFrom"]].ToString() == store.StoreCode ||
+                     d[selectedColumn["MobileExciseWarehouseTo"]].ToString() == store.StoreCode)))
+                {
+                    string edrpou = dataRow[selectedColumn["EDRPOU"]].ToString();
+                    string act = dataRow[selectedColumn["Act"]].ToString();
+
+                    if (сounterpartyInvoiceNumber.Any(c => c.edrpou == edrpou && c.act == act)) continue;
+
+                    сounterpartyInvoiceNumber.Add((edrpou, act));
+
+                    string direction = dataRow[selectedColumn["Direction"]].ToString();
+                    string mobileExciseWarehouseFrom = dataRow[selectedColumn["MobileExciseWarehouseFrom"]].ToString();
+                    string mobileExciseWarehouseTo = dataRow[selectedColumn["MobileExciseWarehouseTo"]].ToString();
+                    double volumeLiters = (double)dataRow[selectedColumn["VolumeLiters"]];
+
+                    if (direction == "Виданий" && mobileExciseWarehouseFrom != string.Empty)
+                    {
+                        store.Balance -= volumeLiters;
+                    }
+                    if (mobileExciseWarehouseTo != string.Empty)
+                    {
+                        store.Balance += volumeLiters;
+                    }
                 }
             }
 

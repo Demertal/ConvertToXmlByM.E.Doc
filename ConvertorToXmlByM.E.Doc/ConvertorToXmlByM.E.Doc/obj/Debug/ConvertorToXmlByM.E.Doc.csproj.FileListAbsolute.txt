@@ -77,7 +77,6 @@ D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Debug\System.ValueTuple.xml
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Debug\Unity.Abstractions.pdb
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Debug\Unity.Container.pdb
-D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\ConvertorToXmlByM.E.Doc.csprojAssemblyReference.cache
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\ConvertorToXmlByM.E.Doc.exe.config
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\Views\J029500.baml
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\Views\J029540.baml
@@ -98,3 +97,9 @@ D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\ConvertorToXmlByM.E.Doc.exe
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\ConvertorToXmlByM.E.Doc.pdb
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Debug\CustomControlLibrary.dll
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Debug\ConvertorToXmlByM.E.Doc.exe.manifest
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Debug\ConvertorToXmlByM.E.Doc.application
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\ConvertorToXmlByM.E.Doc.TrustInfo.xml
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\ConvertorToXmlByM.E.Doc.exe.manifest
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\ConvertorToXmlByM.E.Doc.application
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Debug\ConvertorToXmlByM.E.Doc.csprojAssemblyReference.cache

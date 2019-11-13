@@ -54,7 +54,7 @@
         <Button Content="Сформировать" Command="{Binding StartWorkCommand}" Grid.Row="12" Grid.Column="0" VerticalAlignment="Top" Width="120"/>
         <DatePicker SelectedDate="{Binding Period}" custom:DatePickerCalendar.IsMonthYear="True" custom:DatePickerDateFormat.DateFormat="MM/yyyy" Grid.Row="12" Grid.Column="1"
                     Height="25" VerticalAlignment="Top"/>
-        <custom:ExtendedDataGrid ItemsSource="{Binding Data, UpdateSourceTrigger=PropertyChanged}" CanUserSortColumns="False" CanUserDeleteRows="True"
+        <custom:ExtendedDataGrid ItemsSource="{Binding Data, UpdateSourceTrigger=PropertyChanged}" CanUserSortColumns="True" CanUserDeleteRows="True"
                                  ColumnWidth="SizeToHeader" Grid.Row="0" Grid.Column="2" Grid.RowSpan="13" MinWidth="500" MaxWidth="800" Height="500" AutoGenerateColumns="True"/>
     </Grid>
 </UserControl>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace ConvertorToXmlByM.E.Doc.XML
 {
@@ -38,59 +38,42 @@ namespace ConvertorToXmlByM.E.Doc.XML
             DFill = now.Day.ToString() + now.Month + now.Year;
         }
 
-        protected void WriteElement(XmlWriter writer, string key, string value)
-        {
-            writer.WriteStartElement(key);
-            writer.WriteString(value);
-            writer.WriteEndElement();
-        }
-
-        protected void WriteElementWithAttribute(XmlWriter writer, string keyElement, string valueElement,
-            string keyAttribute, string valueAttribute)
-        {
-            writer.WriteStartElement(keyElement);
-            writer.WriteAttributeString(keyAttribute, valueAttribute);
-            writer.WriteString(valueElement);
-            writer.WriteEndElement();
-        }
-
-        private void WriteHead(XmlWriter writer)
-        {
-            writer.WriteStartElement("DECLARHEAD");
-            WriteElement(writer, "TIN", Tin);
-            WriteElement(writer, "C_DOC", CDoc);
-            WriteElement(writer, "C_DOC_SUB", CDocSub);
-            WriteElement(writer, "C_DOC_VER", CDocVer);
-            WriteElement(writer, "C_DOC_TYPE", CDocType);
-            WriteElement(writer, "C_DOC_CNT", CDocCnt);
-            WriteElement(writer, "C_REG", CReg);
-            WriteElement(writer, "C_RAJ", CRaj);
-            WriteElement(writer, "PERIOD_MONTH", PeriodMonth);
-            WriteElement(writer, "PERIOD_TYPE", PeriodType);
-            WriteElement(writer, "PERIOD_YEAR", PeriodYear);
-            WriteElement(writer, "C_STI_ORIG", CStiOrig);
-            WriteElement(writer, "C_DOC_STAN", CDocStan);
-            WriteElement(writer, "LINKED_DOCS", LinkedDocs);
-            WriteElement(writer, "D_FILL", DFill);
-            WriteElement(writer, "SOFTWARE", Software);
-            writer.WriteEndElement();
-        }
-
-        protected abstract void WriteBody(XmlWriter writer);
+        protected abstract void WriteBody(XElement declarBody);
 
         public void Write(string fileName)
         {
-            XmlWriterSettings settings = new XmlWriterSettings { Indent = true };
-            XmlWriter writer = XmlWriter.Create(fileName, settings);
-            writer.WriteStartDocument();
-            writer.WriteStartElement("DECLAR");
-            writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
-            writer.WriteAttributeString("xsi", "noNamespaceSchemaLocation", null, CDoc + CDocSub + "01.xsd");
-            WriteHead(writer);
-            WriteBody(writer);
-            writer.WriteEndElement();
-            writer.WriteEndDocument();
-            writer.Close();
+            XDocument xdoc = new XDocument();
+            XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
+            XElement declar = new XElement("DECLAR",
+                new XAttribute(XNamespace.Xmlns + "xsi", "http://www.w3.org/2001/XMLSchema-instance"),
+                new XAttribute(xsi + "noNamespaceSchemaLocation", CDoc + CDocSub + "01.xsd"));
+
+            XElement declarHead = new XElement("DECLARHEAD",
+                new XElement("TIN", Tin),
+                new XElement("C_DOC", CDoc),
+                new XElement("C_DOC_SUB", CDocSub),
+                new XElement("C_DOC_VER", CDocVer),
+                new XElement("C_DOC_TYPE", CDocType),
+                new XElement("C_DOC_CNT", CDocCnt),
+                new XElement("C_REG", CReg),
+                new XElement("C_RAJ", CRaj),
+                new XElement("PERIOD_MONTH", PeriodMonth),
+                new XElement("PERIOD_TYPE", PeriodType),
+                new XElement("PERIOD_YEAR", PeriodYear),
+                new XElement("C_STI_ORIG", CStiOrig),
+                new XElement("C_DOC_STAN", CDocStan),
+                new XElement("LINKED_DOCS", LinkedDocs),
+                new XElement("D_FILL", DFill),
+                new XElement("SOFTWARE", Software));
+
+            XElement declarbody = new XElement("DECLARBODY");
+            WriteBody(declarbody);
+
+            declar.Add(declarHead, declarbody);
+
+            xdoc.Add(declar);
+
+            xdoc.Save(fileName);
         }
     }
 }

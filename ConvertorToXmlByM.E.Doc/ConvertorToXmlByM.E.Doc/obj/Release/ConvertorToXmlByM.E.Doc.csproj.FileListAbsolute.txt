@@ -48,3 +48,9 @@ D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.csproj.CopyComplete
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.exe
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.pdb
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\ConvertorToXmlByM.E.Doc.exe.manifest
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\ConvertorToXmlByM.E.Doc.application
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.TrustInfo.xml
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.exe.manifest
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.application
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.csprojAssemblyReference.cache

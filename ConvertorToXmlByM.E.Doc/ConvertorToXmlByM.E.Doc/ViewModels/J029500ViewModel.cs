@@ -23,6 +23,17 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
 
         public DataView Data => _data?.Tables[0].DefaultView;
 
+        private string _xmlFilename = "";
+        public string XmlFilename
+        {
+            get => _xmlFilename;
+            set
+            {
+                _xmlFilename = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private DataColumnCollection _columnName;
 
         public DataColumnCollection ColumnName
@@ -67,7 +78,7 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
             }
             try
             {
-                J029500Xml j029500 = new J029500Xml(Period.Value, _data, SelectedColumn);
+                J029500Xml j029500 = new J029500Xml(Period.Value, _data, SelectedColumn, XmlFilename);
                 _data = new DataSet();
                 DataTable temp = new DataTable();
                 temp.Columns.Add("Склад");
@@ -104,28 +115,36 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog
                 {
-                    Filter = "Excel файл|*.xlsx;*.xls",
+                    Filter = "Excel и Xml файлы|*.xlsx;*.xls;*.xml",
                     InitialDirectory = @"D:\",
                     ShowReadOnly = true,
                     CheckFileExists = true,
-                    CheckPathExists = true
+                    CheckPathExists = true,
+                    Multiselect = true
                 };
                 if (openFileDialog.ShowDialog() != true) return;
-                _filename = openFileDialog.FileName;
+
+                foreach (var fileName in openFileDialog.FileNames)
+                {
+                    if (fileName.Contains(".xml"))
+                        XmlFilename = fileName;
+                    else if (fileName.Contains(".xlsx") || fileName.Contains(".xls"))
+                        _filename = fileName;
+                }
 
                 SelectedColumn = new Dictionary<string, string>(5)
                 {
                     {"EDRPOU", "ЄДРПОУ" },
                     {"Act", "Номер" },
-                    {"Direction", "Направление" },
-                    {"RegistrationDate", "Дата регистрации"},
-                    {"RegistrationNumber", "Регистрационный номер"},
+                    {"Direction", "Напрямок" },
+                    {"RegistrationDate", "Дата та час реєстрації"},
+                    {"RegistrationNumber", "Реєстраційний номер"},
                     {"ProductСode", "Код УКТ ЗЕД (АН,РК-1)"},
-                    {"VolumeLiters", "Объем в литрах"},
-                    {"ExciseWarehouseFrom", "Акцизный склад, с которого отгружено топливо"},
-                    {"MobileExciseWarehouseFrom", "Передвижной акцизный склад, с которого отгружено топливо"},
-                    {"ExciseWarehouseTo", "Акцизный склад, на который получено топливо"},
-                    {"MobileExciseWarehouseTo", "Передвижной акцизный склад, на который получено топливо"}
+                    {"VolumeLiters", "Обсяг (АН,РК-1) (в л)"},
+                    {"ExciseWarehouseFrom", "Акцизний склад, з якого відвантажено паливо"},
+                    {"MobileExciseWarehouseFrom", "Пересувний акцизний склад, з якого відвантажно паливо - Реєстраційний номер"},
+                    {"ExciseWarehouseTo", "Акцизний склад, на який отримано паливо"},
+                    {"MobileExciseWarehouseTo", "Пересувний акцизний склад, на який отримано паливо - Реєстраційний номер"}
                 };
 
                 using (var stream = File.Open(_filename, FileMode.Open, FileAccess.Read))

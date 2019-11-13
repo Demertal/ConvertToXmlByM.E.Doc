@@ -105,17 +105,13 @@ namespace ConvertorToXmlByM.E.Doc.XML
             var declarGroup = from declar in document.Element("DECLAR").Element("DECLARBODY").Elements()
                 group declar by declar.Attribute("ROWNUM").Value;
 
+            var fmt = new NumberFormatInfo { NumberDecimalSeparator = ".", NegativeSign = "-" };
+
             foreach (var group in declarGroup)
             {
-                double balance = double.Parse(group.Single(e => e.Name == "T1RXXXXG3").Value,
-                                     NumberStyles.AllowDecimalPoint,
-                                     new NumberFormatInfo {NumberDecimalSeparator = "."}) +
-                                 double.Parse(group.Single(e => e.Name == "T1RXXXXG4").Value,
-                                     NumberStyles.AllowDecimalPoint,
-                                     new NumberFormatInfo {NumberDecimalSeparator = "."}) -
-                                 double.Parse(group.Single(e => e.Name == "T1RXXXXG5").Value,
-                                     NumberStyles.AllowDecimalPoint,
-                                     new NumberFormatInfo {NumberDecimalSeparator = "."});
+                double balance = double.Parse(group.Single(e => e.Name == "T1RXXXXG3").Value, fmt) +
+                                 double.Parse(group.Single(e => e.Name == "T1RXXXXG4").Value, fmt) -
+                                 double.Parse(group.Single(e => e.Name == "T1RXXXXG5").Value, fmt);
 
                 if (balance < 0.001)
                     continue;

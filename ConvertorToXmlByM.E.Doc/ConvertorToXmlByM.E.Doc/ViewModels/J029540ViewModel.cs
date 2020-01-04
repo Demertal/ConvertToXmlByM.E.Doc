@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows;
-using ConvertorToXmlByM.E.Doc.XML;
+using ConvertorToXmlByM.E.Doc.Models.XML;
 using ExcelDataReader;
 using Microsoft.Win32;
 using Prism.Commands;
@@ -23,14 +23,14 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
 
         public DataView Data => _data?.Tables[0].DefaultView;
 
-        private DataColumnCollection _columnName;
+        private List<string> _columnNames;
 
-        public DataColumnCollection ColumnName
+        public List<string> ColumnNames
         {
-            get => _columnName;
+            get => _columnNames;
             set
             {
-                _columnName = value;
+                _columnNames = value;
                 RaisePropertyChanged();
             }
         }
@@ -111,7 +111,12 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
                             }
                         });
 
-                        ColumnName = _data.Tables[0].Columns;
+                        ColumnNames = new List<string>();
+                        foreach (DataColumn column in _data.Tables[0].Columns)
+                        {
+                            ColumnNames.Add(column.ColumnName);
+                        }
+
                         SelectedColumn = new Dictionary<string, string>(5)
                         {
                             {"PayerName", "Имя плательщика"},
@@ -120,6 +125,8 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
                             {"Act", "Номер документа ГТД"},
                             {"СrossingDate", "Дата пересечения границы"}
                         };
+
+                        RaisePropertyChanged(nameof(ColumnNames));
                         RaisePropertyChanged(nameof(SelectedColumn));
                         RaisePropertyChanged(nameof(Data));
                     }

@@ -11,17 +11,17 @@
     <deploymentProvider codebase="http://desktop-kc53e2s:8080/ConvertorToXmlByM.E.Doc.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="ConvertorToXmlByM.E.Doc.exe.manifest" size="13288">
+    <dependentAssembly dependencyType="install" codebase="ConvertorToXmlByM.E.Doc.exe.manifest" size="13990">
       <assemblyIdentity name="ConvertorToXmlByM.E.Doc.exe" version="1.1.0.5" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jHI0EGy50ecvku/jmcTe5mloobSldHrdxYR4IfYHYfo=</dsig:DigestValue>
+        <dsig:DigestValue>EnLJigrqrT/TPWc6kVQ0fXCaIQ+dpUAeu8oJ0W4/qss=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -54,26 +54,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ConvertorToXmlByM.E.Doc.exe" size="44528">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ConvertorToXmlByM.E.Doc.exe" size="53744">
       <assemblyIdentity name="ConvertorToXmlByM.E.Doc" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iRTlogsIxmUriUrKQEFGwH29GPvTchLrPuQbYiGEn2M=</dsig:DigestValue>
+        <dsig:DigestValue>Hr5GrkvuZ3468ac6D7ki01aLmoj0KL+jUc0fE6LS4Kc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CustomControlLibrary.dll" size="95744">
-      <assemblyIdentity name="CustomControlLibrary" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CustomControlLibrary.dll" size="126464">
+      <assemblyIdentity name="CustomControlLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>M3KJHoqcDcGP9V0dvValI4ozXdTKuqax4/qMKVLSAoM=</dsig:DigestValue>
+        <dsig:DigestValue>7BHTYqhN/0x19nj+UeaUFio409YkNNpaAJIEd1QWXvQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,6 +98,18 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>psiBU4wfpUbJxmD6JqL31nw+5BVamxZsMedAftxtvHI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Xaml.Behaviors.dll" size="144760">
+      <assemblyIdentity name="Microsoft.Xaml.Behaviors" version="1.1.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>BZKrY7MPDPwIxGd95obXLTCAI2Nf3Yd4NuYLvPXFM5o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -197,13 +209,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="ConvertorToXmlByM.E.Doc.exe.config" size="870">
+  <file name="ConvertorToXmlByM.E.Doc.exe.config" size="536">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>LbPLFRXXKesEabyJ0vSWkHE8t9HI/ZRpsUkRWIrsrss=</dsig:DigestValue>
+      <dsig:DigestValue>3xuxMZAzVCcoZOPLk6KAHYKVucgd89Jx8YIUTrxlBBg=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

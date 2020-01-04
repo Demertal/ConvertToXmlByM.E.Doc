@@ -20,7 +20,6 @@ D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\Unity.Abstractions.dll
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\Unity.Container.dll
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\CustomControlLibrary.pdb
-D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\CustomControlLibrary.dll.config
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\ExcelDataReader.pdb
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\ExcelDataReader.xml
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\ExcelDataReader.DataSet.pdb
@@ -35,7 +34,6 @@ D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\System.ValueTuple.xml
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\Unity.Abstractions.pdb
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\Unity.Container.pdb
-D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.exe.config
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\Views\J029500.baml
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\Views\J029540.baml
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\Views\J029500.g.cs
@@ -44,7 +42,6 @@ D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.g.resources
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.Properties.Resources.resources
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.csproj.GenerateResource.cache
-D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.csproj.CoreCompileInputs.cache
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.csproj.CopyComplete
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.exe
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.pdb
@@ -53,3 +50,7 @@ D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.TrustInfo.xml
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.exe.manifest
 D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.application
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\obj\Release\ConvertorToXmlByM.E.Doc.csprojAssemblyReference.cache
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\Microsoft.Xaml.Behaviors.dll
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\Microsoft.Xaml.Behaviors.pdb
+D:\Project\ConvertToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\ConvertorToXmlByM.E.Doc\bin\Release\Microsoft.Xaml.Behaviors.xml

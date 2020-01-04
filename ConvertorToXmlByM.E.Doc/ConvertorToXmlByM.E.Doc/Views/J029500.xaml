@@ -21,6 +21,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -30,31 +32,35 @@
         </Grid.ColumnDefinitions>
         <Button Content="Выбрать файл" Command="{Binding LoadFileCommand}" Grid.Row="0" Grid.Column="0" Width="120"/>
         <TextBlock Text="ЄДРПОУ" Grid.Row="1" Grid.Column="0"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding SelectedColumn[EDRPOU]}"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Edrpou, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Номер" Grid.Row="2" Grid.Column="0"/>
-        <ComboBox Grid.Row="2" Grid.Column="1" SelectedValue="{Binding SelectedColumn[Act]}"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" SelectedItem="{Binding Act, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Направление" Grid.Row="3" Grid.Column="0"/>
-        <ComboBox Grid.Row="3" Grid.Column="1" SelectedValue="{Binding SelectedColumn[Direction]}"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" SelectedItem="{Binding Direction, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Дата регистрации" Grid.Row="4" Grid.Column="0"/>
-        <ComboBox Grid.Row="4" Grid.Column="1" SelectedValue="{Binding SelectedColumn[RegistrationDate]}"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" SelectedItem="{Binding RegistrationDate, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Регистрационный номер" Grid.Row="5" Grid.Column="0"/>
-        <ComboBox Grid.Row="5" Grid.Column="1" SelectedValue="{Binding SelectedColumn[RegistrationNumber]}"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" SelectedItem="{Binding RegistrationNumber, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Код УКТ ЗЕД (АН,РК-1)" Grid.Row="6" Grid.Column="0"/>
-        <ComboBox Grid.Row="6" Grid.Column="1" SelectedValue="{Binding SelectedColumn[ProductСode]}"/>
-        <TextBlock Text="Объем в литрах" Grid.Row="7" Grid.Column="0"/>
-        <ComboBox Grid.Row="7" Grid.Column="1" SelectedValue="{Binding SelectedColumn[VolumeLiters]}"/>
-        <TextBlock Text="Акцизный склад, с которого отгружено топливо" Grid.Row="8" Grid.Column="0"/>
-        <ComboBox Grid.Row="8" Grid.Column="1" SelectedValue="{Binding SelectedColumn[ExciseWarehouseFrom]}"/>
-        <TextBlock Text="Передвижной акцизный склад, с которого отгружено топливо" Grid.Row="9" Grid.Column="0"/>
-        <ComboBox Grid.Row="9" Grid.Column="1" SelectedValue="{Binding SelectedColumn[MobileExciseWarehouseFrom]}"/>
-        <TextBlock Text="Акцизный склад, на который получено топливо" Grid.Row="10" Grid.Column="0"/>
-        <ComboBox Grid.Row="10" Grid.Column="1" SelectedValue="{Binding SelectedColumn[ExciseWarehouseTo]}"/>
-        <TextBlock Text="Передвижной акцизный склад, на который получено топливо" Grid.Row="11" Grid.Column="0"/>
-        <ComboBox Grid.Row="11" Grid.Column="1" SelectedValue="{Binding SelectedColumn[MobileExciseWarehouseTo]}"/>
-        <Button Content="Сформировать" Command="{Binding StartWorkCommand}" Grid.Row="12" Grid.Column="0" VerticalAlignment="Top" Width="120"/>
-        <DatePicker SelectedDate="{Binding Period}" custom:DatePickerCalendar.IsMonthYear="True" custom:DatePickerDateFormat.DateFormat="MM/yyyy" Grid.Row="12" Grid.Column="1"
+        <ComboBox Grid.Row="6" Grid.Column="1" SelectedItem="{Binding ProductСode1, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Объем в литрах (АН,РК-1)" Grid.Row="7" Grid.Column="0"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" SelectedItem="{Binding VolumeLiters1, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Код УКТ ЗЕД (АН,РК-2)" Grid.Row="8" Grid.Column="0"/>
+        <ComboBox Grid.Row="8" Grid.Column="1" SelectedItem="{Binding ProductСode2, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Объем в литрах (АН,РК-2)" Grid.Row="9" Grid.Column="0"/>
+        <ComboBox Grid.Row="9" Grid.Column="1" SelectedItem="{Binding VolumeLiters2, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Акцизный склад, с которого отгружено топливо" Grid.Row="10" Grid.Column="0"/>
+        <ComboBox Grid.Row="10" Grid.Column="1" SelectedItem="{Binding ExciseWarehouseFrom, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Передвижной акцизный склад, с которого отгружено топливо" Grid.Row="11" Grid.Column="0"/>
+        <ComboBox Grid.Row="11" Grid.Column="1" SelectedItem="{Binding MobileExciseWarehouseFrom, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Акцизный склад, на который получено топливо" Grid.Row="12" Grid.Column="0"/>
+        <ComboBox Grid.Row="12" Grid.Column="1" SelectedItem="{Binding ExciseWarehouseTo, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Передвижной акцизный склад, на который получено топливо" Grid.Row="13" Grid.Column="0"/>
+        <ComboBox Grid.Row="13" Grid.Column="1" SelectedItem="{Binding MobileExciseWarehouseTo, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Сформировать" Command="{Binding StartWorkCommand}" Grid.Row="14" Grid.Column="0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker SelectedDate="{Binding Period}" custom:DatePickerCalendar.IsMonthYear="True" custom:DatePickerDateFormat.DateFormat="MM/yyyy" Grid.Row="14" Grid.Column="1"
                     Height="25" VerticalAlignment="Top"/>
-        <custom:ExtendedDataGrid ItemsSource="{Binding Data, UpdateSourceTrigger=PropertyChanged}" CanUserSortColumns="True" CanUserDeleteRows="True"
-                                 ColumnWidth="SizeToHeader" Grid.Row="0" Grid.Column="2" Grid.RowSpan="13" MinWidth="500" MaxWidth="800" Height="500" AutoGenerateColumns="True"/>
+        <custom:ExtendedDataGrid ItemsSource="{Binding Data, UpdateSourceTrigger=PropertyChanged}" CanUserSortColumns="False" CanUserDeleteRows="True"
+                                 ColumnWidth="SizeToHeader" Grid.Row="0" Grid.Column="2" Grid.RowSpan="15" MinWidth="500" MaxWidth="800" Height="670" AutoGenerateColumns="True"/>
     </Grid>
 </UserControl>

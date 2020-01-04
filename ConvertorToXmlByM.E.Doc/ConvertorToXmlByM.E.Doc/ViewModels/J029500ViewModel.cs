@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.IO;
 using System.Windows;
-using ConvertorToXmlByM.E.Doc.XML;
+using ConvertorToXmlByM.E.Doc.Models.XML;
+using ConvertorToXmlByM.E.Doc.Properties;
 using ExcelDataReader;
 using Microsoft.Win32;
 using Prism.Commands;
@@ -11,15 +13,14 @@ using Prism.Regions;
 
 namespace ConvertorToXmlByM.E.Doc.ViewModels
 {
+    // ReSharper disable once UnusedMember.Global
     class J029500ViewModel : ViewModelBase
     {
         private string _filename = "";
 
-        public DelegateCommand StartWorkCommand { get; }
-
-        public DelegateCommand LoadFileCommand { get; }
-
         private DataSet _data;
+
+        #region Properties
 
         public DataView Data => _data?.Tables[0].DefaultView;
 
@@ -34,19 +35,16 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
             }
         }
 
-        private DataColumnCollection _columnName;
-
-        public DataColumnCollection ColumnName
+        private List<string> _columnNames;
+        public List<string> ColumnNames
         {
-            get => _columnName;
+            get => _columnNames;
             set
             {
-                _columnName = value;
+                _columnNames = value;
                 RaisePropertyChanged();
             }
         }
-
-        public Dictionary<string, string> SelectedColumn { get; set; }
 
         private DateTime? _period;
         public DateTime? Period
@@ -59,10 +57,184 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
             }
         }
 
+        private string _edrpou;
+        public string Edrpou
+        {
+            get => _edrpou;
+            set
+            {
+                _edrpou = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _act;
+        public string Act
+        {
+            get => _act;
+            set
+            {
+                _act = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _direction;
+        public string Direction
+        {
+            get => _direction;
+            set
+            {
+                _direction = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _registrationDate;
+        public string RegistrationDate
+        {
+            get => _registrationDate;
+            set
+            {
+                _registrationDate = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _registrationNumber;
+        public string RegistrationNumber
+        {
+            get => _registrationNumber;
+            set
+            {
+                _registrationNumber = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _productСode1;
+        public string ProductСode1
+        {
+            get => _productСode1;
+            set
+            {
+                _productСode1 = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _volumeLiters1;
+        public string VolumeLiters1
+        {
+            get => _volumeLiters1;
+            set
+            {
+                _volumeLiters1 = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _productСode2;
+        public string ProductСode2
+        {
+            get => _productСode2;
+            set
+            {
+                _productСode2 = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _volumeLiters2;
+        public string VolumeLiters2
+        {
+            get => _volumeLiters2;
+            set
+            {
+                _volumeLiters2 = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _exciseWarehouseFrom;
+        public string ExciseWarehouseFrom
+        {
+            get => _exciseWarehouseFrom;
+            set
+            {
+                _exciseWarehouseFrom = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _mobileExciseWarehouseFrom;
+        public string MobileExciseWarehouseFrom
+        {
+            get => _mobileExciseWarehouseFrom;
+            set
+            {
+                _mobileExciseWarehouseFrom = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _exciseWarehouseTo;
+        public string ExciseWarehouseTo
+        {
+            get => _exciseWarehouseTo;
+            set
+            {
+                _exciseWarehouseTo = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        private string _mobileExciseWarehouseTo;
+        public string MobileExciseWarehouseTo
+        {
+            get => _mobileExciseWarehouseTo;
+            set
+            {
+                _mobileExciseWarehouseTo = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(CanWork));
+            }
+        }
+
+        public bool CanWork => Period != null && !string.IsNullOrEmpty(Edrpou) && !string.IsNullOrEmpty(Act) &&
+                               !string.IsNullOrEmpty(Direction) && !string.IsNullOrEmpty(RegistrationDate) &&
+                               !string.IsNullOrEmpty(RegistrationNumber) && !string.IsNullOrEmpty(ProductСode1) &&
+                               !string.IsNullOrEmpty(VolumeLiters1) && !string.IsNullOrEmpty(ProductСode2) &&
+                               !string.IsNullOrEmpty(VolumeLiters2) && !string.IsNullOrEmpty(ExciseWarehouseFrom) &&
+                               !string.IsNullOrEmpty(MobileExciseWarehouseFrom) &&
+                               !string.IsNullOrEmpty(ExciseWarehouseTo) &&
+                               !string.IsNullOrEmpty(MobileExciseWarehouseTo);
+
+        #endregion
+
+        #region DelegateCommand
+
+        public DelegateCommand StartWorkCommand { get; }
+        public DelegateCommand LoadFileCommand { get; }
+
+        #endregion
+
         public J029500ViewModel()
         {
             Period = DateTime.Now;
-            StartWorkCommand = new DelegateCommand(StartWork);
+            StartWorkCommand = new DelegateCommand(StartWork).ObservesCanExecute(() => CanWork);
             LoadFileCommand = new DelegateCommand(LoadFile);
         }
 
@@ -78,7 +250,19 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
             }
             try
             {
-                J029500Xml j029500 = new J029500Xml(Period.Value, _data, SelectedColumn, XmlFilename);
+                // ReSharper disable once PossibleInvalidOperationException
+                J029500Xml j029500 = new J029500Xml(Period.Value, _data,
+                    new Dictionary<string, string>(5)
+                    {
+                        {Resources.EDRPOU, Edrpou}, {Resources.Act, Act}, {Resources.Direction, Direction},
+                        {Resources.RegistrationDate, RegistrationDate},
+                        {Resources.RegistrationNumber, RegistrationNumber}, {Resources.ProductСode1, ProductСode1},
+                        {Resources.VolumeLiters1, VolumeLiters1}, {Resources.ProductСode2, ProductСode2},
+                        {Resources.VolumeLiters2, VolumeLiters2}, {Resources.ExciseWarehouseFrom, ExciseWarehouseFrom},
+                        {Resources.MobileExciseWarehouseFrom, MobileExciseWarehouseFrom},
+                        {Resources.ExciseWarehouseTo, ExciseWarehouseTo},
+                        {Resources.MobileExciseWarehouseTo, MobileExciseWarehouseTo}
+                    }, XmlFilename);
                 _data = new DataSet();
                 DataTable temp = new DataTable();
                 temp.Columns.Add("Склад");
@@ -94,7 +278,7 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
                 }
 
                 _data.Tables.Add(temp);
-                RaisePropertyChanged("Data");
+                RaisePropertyChanged(nameof(Data));
 
                 FileStream fs = File.Create(fileName);
                 fs.Close();
@@ -132,21 +316,6 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
                         _filename = fileName;
                 }
 
-                SelectedColumn = new Dictionary<string, string>(5)
-                {
-                    {"EDRPOU", "ЄДРПОУ" },
-                    {"Act", "Номер" },
-                    {"Direction", "Напрямок" },
-                    {"RegistrationDate", "Дата та час реєстрації"},
-                    {"RegistrationNumber", "Реєстраційний номер"},
-                    {"ProductСode", "Код УКТ ЗЕД (АН,РК-1)"},
-                    {"VolumeLiters", "Обсяг (АН,РК-1) (в л)"},
-                    {"ExciseWarehouseFrom", "Акцизний склад, з якого відвантажено паливо"},
-                    {"MobileExciseWarehouseFrom", "Пересувний акцизний склад, з якого відвантажно паливо - Реєстраційний номер"},
-                    {"ExciseWarehouseTo", "Акцизний склад, на який отримано паливо"},
-                    {"MobileExciseWarehouseTo", "Пересувний акцизний склад, на який отримано паливо - Реєстраційний номер"}
-                };
-
                 using (var stream = File.Open(_filename, FileMode.Open, FileAccess.Read))
                 {
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
@@ -162,11 +331,29 @@ namespace ConvertorToXmlByM.E.Doc.ViewModels
                             }
                         });
 
-                        ColumnName = _data.Tables[0].Columns;
+                        ColumnNames = new List<string>();
 
+                        foreach (DataColumn column in _data.Tables[0].Columns)
+                        {
+                            ColumnNames.Add(column.ColumnName);
+                        }
+
+                        Edrpou = "ЄДРПОУ";
+                        Act = "Номер";
+                        Direction = "Напрямок";
+                        RegistrationDate = "Дата та час реєстрації";
+                        RegistrationNumber = "Реєстраційний номер";
+                        ProductСode1 = "Код УКТ ЗЕД (АН,РК-1)";
+                        VolumeLiters1 = "Обсяг (АН,РК-1) (в л)";
+                        ProductСode2 = "Код УКТ ЗЕД (РК-2)";
+                        VolumeLiters2 = "Обсяг (РК-2) (в л)";
+                        ExciseWarehouseFrom = "Акцизний склад, з якого відвантажено паливо";
+                        MobileExciseWarehouseFrom = "Пересувний акцизний склад, з якого відвантажно паливо - Реєстраційний номер";
+                        ExciseWarehouseTo = "Акцизний склад, на який отримано паливо";
+                        MobileExciseWarehouseTo = "Пересувний акцизний склад, на який отримано паливо - Реєстраційний номер";
+
+                        RaisePropertyChanged(nameof(ColumnNames));
                         RaisePropertyChanged(nameof(Data));
-                        RaisePropertyChanged(nameof(ColumnName));
-                        RaisePropertyChanged(nameof(SelectedColumn));
                     }
                 }
             }
